@@ -1,11 +1,11 @@
-import { Express } from "express";
+import express from "express";
 
 import {
   askQuestion,
   deleteQuestion,
   getAllQuestion,
-} from "../controllers/Questions";
-import auth from "../middleware/auth";
+} from "../controllers/Questions.js";
+import auth from "../middleware/auth.js";
 
 const router = express.Router();
 

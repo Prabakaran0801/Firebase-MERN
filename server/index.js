@@ -1,18 +1,30 @@
 import express from "express";
-import bodyparser from "body-parser";
 import mongoose from "mongoose";
-// import cors from "cors";
+import cors from "cors";
 import dotenv from "dotenv";
-// import multer from "multer";
-// import helmet from "helmet";
+import questionRoutes from "./routes/Questions.js";
+import answerRoutes from "./routes/Answers.js";
+import userRoutes from "./routes/Users.js";
+
+dotenv.config();
+
+const PORT = process.env.PORT || 5000;
 
 const app = express();
-dotenv.config();
-const PORT = 10000;
-mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => app.listen(`${PORT}`))
-  .then(() => console.log("db connected"))
-  .catch((err) => console.log(err));
+app.use(express.json({ limit: "30mb", extended: true }));
+app.use(express.urlencoded({ limit: "30mb", extended: true }));
+app.use(cors());
 
-// app.listen(PORT, () => console.log(`server Port :${PORT}`));
+// app.use("/user", userRoutes);
+app.use(".questions", questionRoutes);
+app.use("/answer", answerRoutes);
+
+app.get("/", (req, res) => {
+  res.send("This is Question MERN API");
+});
+
+mongoose.connect(process.env.MONGO_URL).catch((err) => console.log(err));
+
+app.listen(PORT, () => {
+  console.log(`server running on Port :${PORT}`);
+});

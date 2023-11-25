@@ -1,4 +1,4 @@
-import Question from "../models/Questions";
+import Question from "../models/Questions.js";
 import mongoose from "mongoose";
 
 export const askQuestion = async (req, res) => {

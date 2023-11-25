@@ -10,18 +10,18 @@ const QuestionSchema = new mongoose.Schema({
     require: true,
     min: 2,
   },
-  question: {
+  questionTitle: {
     type: String,
     require: true,
     min: 2,
   },
-  tags: {
-    type: Array,
-    default: [],
+  questionsTags: {
+    type: [String],
+    required: "Question must have Tags",
   },
-  category: {
-    type: Array,
-    default: [],
+  questionsCategory: {
+    type: [String],
+    required: "Question must have Category",
   },
 });
 

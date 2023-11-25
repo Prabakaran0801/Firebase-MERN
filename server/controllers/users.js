@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Users from "../models/auth";
+import Users from "../models/auth.js";
 
 export const getAllusers = async (req, res) => {
   try {
