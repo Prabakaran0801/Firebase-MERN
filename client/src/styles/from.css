@@ -1,0 +1,51 @@
+.app {
+  display: flex;
+  overflow: hidden;
+}
+
+.navbar {
+  flex: 0.2;
+  background-color: rgb(0, 21, 41);
+}
+
+.formbody {
+  display: flex;
+  width: auto;
+}
+.form_input_area {
+  display: inline-block;
+  width: 100%;
+  padding: 0 10% 0 10%;
+  margin: 0%;
+}
+
+.sidebar {
+  height: auto;
+  width: 20%;
+  display: flex;
+}
+.button_area {
+  display: flex;
+  justify-content: space-evenly;
+}
+.align_items {
+  width: 100%;
+  padding: 25px;
+}
+.align_items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.question-main {
+  margin: 1rem;
+  margin-left: 20%;
+  display: flex;
+}
+.card {
+  /* align-items: left; */
+  width: 250px;
+  margin-right: 10px;
+}

@@ -1,12 +1,13 @@
 import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import questionRoutes from "./routes/Questions.js";
 import answerRoutes from "./routes/Answers.js";
-import userRoutes from "./routes/Users.js";
+// import userRoutes from "./routes/Users.js";
+import connectDB from "./config/connectDb.js";
 
 dotenv.config();
+connectDB();
 
 const PORT = process.env.PORT || 5000;
 
@@ -22,8 +23,6 @@ app.use("/answer", answerRoutes);
 app.get("/", (req, res) => {
   res.send("This is Question MERN API");
 });
-
-mongoose.connect(process.env.MONGO_URL).catch((err) => console.log(err));
 
 app.listen(PORT, () => {
   console.log(`server running on Port :${PORT}`);
