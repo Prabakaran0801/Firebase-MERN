@@ -16,7 +16,7 @@ export const askQuestion = async (req, res) => {
 
 export const getAllQuestion = async (req, res) => {
   try {
-    const questionlist = await Question.find().sort({ askedon: -1 });
+    const questionlist = await Question.find().limit(5);
     res.status(200).json(questionlist);
   } catch (error) {
     res.status(404).json({ message: error.meassage });
