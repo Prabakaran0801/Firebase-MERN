@@ -13,28 +13,25 @@ import {
 import { signOut } from "firebase/auth";
 import { auth } from "../config/Firebase";
 import Select from "react-select";
-import { db } from "../config/Firebase";
-import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { languageOptions } from "./OptionsGroup";
 import MyEditor from "./Editor";
 import Sidebar from "./Sidebar";
+import axios from "axios";
 
 const Form = ({ initialState, onChange, onSubmit }) => {
-  // Add document
-  const questionCollectionRef = collection(db, "questions");
-
   const onSubmitQuestion = async () => {
     try {
-      await addDoc(questionCollectionRef, {
+      const response = await axios.post("http://localhost:5050/question", {
         type: initialState.type,
-        category: initialState.category,
-        tags: initialState.tags,
-        question: initialState.question,
+        questionsCategory: initialState.category,
+        questionsTags: initialState.tags,
+        questionTitle: initialState.question,
         answer: initialState.answer,
       });
-    } catch (err) {
-      console.log(err);
+      console.log("Response from the backend:", response.data);
+    } catch (error) {
+      console.error("Error:", error.message);
     }
   };
 

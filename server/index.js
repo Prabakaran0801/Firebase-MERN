@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import questionRoutes from "./routes/Questions.js";
@@ -32,12 +32,17 @@ app.get("/question", (req, res) => {
 });
 
 // Handle POST request
-app.post("/question", express.json(), (req, res) => {
-  const requestData = req.body;
-  console.log("Received data from the frontend:", requestData);
-  const responseData = { status: "success" };
-  // Send the response
-  res.json(responseData);
+app.post("/question", express.json(), async (req, res) => {
+  try {
+    const requestData = req.body;
+    await questionModel.insertMany([requestData]);
+    const responseData = { status: "success" };
+    console.log("Received data from the frontend:", requestData);
+    res.json(responseData);
+  } catch (error) {
+    console.error("Error processing data :", error);
+    res.status(500).json({ status: "error", error: "Internal Server Error" });
+  }
 });
 
 app.listen(PORT, () => {
