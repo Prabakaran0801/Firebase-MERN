@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Form from "./Form";
+import Form from "../components/Form";
 import { useParams } from "react-router-dom";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../config/Firebase";
@@ -34,15 +34,16 @@ const Edit = () => {
 
   useEffect(() => {
     fetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // if (loading) return <div>Loading...</div>;
 
   const updateFields = {
     type: initialState.type,
-    category: initialState.category,
-    tags: initialState.tags,
-    question: initialState.question,
+    questionsCategory: initialState.category,
+    questionsTags: initialState.tags,
+    questionTitle: initialState.question,
     answer: initialState.answer,
   };
 

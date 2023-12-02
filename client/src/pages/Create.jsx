@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Form from "./Form";
-import Sidebar from "./Sidebar";
+import Form from "../components/Form";
+// import Sidebar from "./Sidebar";
 
 const Create = () => {
   const [initialState, setInitialState] = useState({});

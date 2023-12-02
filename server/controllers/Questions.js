@@ -15,9 +15,17 @@ export const askQuestion = async (req, res) => {
 };
 
 export const getAllQuestion = async (req, res) => {
+  const PAGE_SIZE = 5;
+  const page = parseInt(req.query.page || "0");
   try {
-    const questionlist = await Question.find().limit(5);
-    res.status(200).json(questionlist);
+    const total = await Question.countDocuments({});
+    const questionlist = await Question.find()
+      .skip(PAGE_SIZE * page)
+      .limit(PAGE_SIZE);
+    res.status(200).json({
+      totalPages: Math.ceil(total / PAGE_SIZE),
+      questionlist,
+    });
   } catch (error) {
     res.status(404).json({ message: error.meassage });
   }
